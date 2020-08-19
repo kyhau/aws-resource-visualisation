@@ -1,0 +1,85 @@
+{
+    "name": "123456789012",
+    "children": [
+      {
+        "name": "ap-southeast-2a",
+        "children": [
+          {
+            "name": "subnet-11111111",
+            "children": [
+              {
+                "name": "Active (3)",
+                "children": [
+                  {
+                    "name": "resource-01",
+                    "size": 100
+                  },
+                  {
+                    "name": "resource-02",
+                    "size": 112
+                  },
+                  {
+                    "name": "resource-06",
+                    "size": 22
+                  }
+                ]
+              },
+              {
+                "name": "Inactive (2)",
+                "children": [
+                  {
+                    "name": "resource-03",
+                    "size": 21
+                  },
+                  {
+                    "name": "resource-04",
+                    "size": 10
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ap-southeast-2b",
+        "children": [
+          {
+            "name": "subnet-22222222",
+            "children": [
+                {
+                  "name": "Active (3)",
+                  "children": [
+                    {
+                      "name": "resource-01",
+                      "size": 20
+                    },
+                    {
+                      "name": "resource-02",
+                      "size": 60
+                    },
+                    {
+                      "name": "resource-05",
+                      "size": 43
+                    }
+                  ]
+                },
+                {
+                  "name": "Inactive (2)",
+                  "children": [
+                    {
+                      "name": "resource-03",
+                      "size": 21
+                    },
+                    {
+                      "name": "resource-04",
+                      "size": 10
+                    }
+                  ]
+                }
+              ]
+          }
+        ]
+      }
+    ]
+  }
