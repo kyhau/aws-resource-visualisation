@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import { get, map, isEqual } from "lodash";
 import "./styles.css";
 import { set } from "d3";
-import source_data from "./sample_input.json";
+import source_data from "./input_data.json";
 
 export default function App() {
   const [data, setData] = useState({
@@ -105,7 +105,7 @@ export default function App() {
     tooltip.style.left = e.pageX + 10 + 'px';
     tooltip.style.top = e.pageY + 10 + 'px';
   }
-  
+
   function hideTooltip(e, n) {
     var tooltip = document.getElementById('tooltip');
     tooltip.style.display = "none";

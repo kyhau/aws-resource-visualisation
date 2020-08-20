@@ -6,6 +6,9 @@ import dateutil.parser
 import yaml
 
 
+WORKSPACES_JSON = "workspaces.json"
+
+
 def get_json_data_from_file(input_file):
         with open(input_file, "r") as f:
             return json.load(f)
@@ -49,25 +52,25 @@ def generate_visual_input_data(data, account_id):
                     })
 
                 subnet_children.append({
-                    "name": cat,
+                    "name": f"{cat} ({len(cat_children)})",
                     "children": cat_children
                 })
 
             az_children.append({
-                "name": subnet_id,
+                "name": f"{subnet_id} ({len(subnet_children)})",
                 "children": subnet_children
                 })
 
         tree["children"].append({
-            "name": az,
+            "name": f"{az} ({len(az_children)})",
             "children": az_children
         })
 
-    write_json_file("flare.json", tree)
+    write_json_file("input_data.json", tree)
 
 
 def main():
-    workspaces = get_json_data_from_file("workspaces.json")
+    workspaces = get_json_data_from_file(WORKSPACES_JSON)
 
     account_id = "todo"
     # account -> region -> az -> subnet -> workspace
