@@ -33,6 +33,8 @@ venv/
 *.aws-sam/
 
 # Other files
+.idea
+.vscode
 *whoami*.json
 *whoami*.log
 *ips_used.csv
