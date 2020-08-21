@@ -1,15 +1,15 @@
 (function() {
 
-  d3.json("input_graph_data.json").then(function(data) {
+  d3.json("input_data.json").then(function(data) {
     update(data)
   });
 
   function update(links) {
     console.log("CheckPt:update");
     console.log(links);
-  
+
     const nodes = {};
-  
+
     // Compute the distinct nodes from the links.
     links.forEach(link => {
       link.source =
@@ -17,7 +17,7 @@
       link.target =
         nodes[link.target] || (nodes[link.target] = { name: link.target });
     });
-  
+
     // Compute targetDistance for each link
     for (let i = 0; i < links.length; i++) {
       if (links[i].targetDistance === -1) continue;
@@ -33,18 +33,18 @@
         }
       }
     }
-  
+
     ////////////////////////////////////////////////////////////
     //// Initial Setup /////////////////////////////////////////
     ////////////////////////////////////////////////////////////
     const width = 1200;
     const height = 800;
-  
+
     const nodeRadius = 25;
-  
+
     const forcePadding = nodeRadius + 10;
     const targetDistanceUnitLength = nodeRadius / 4;
-  
+
     var simulation = d3
       .forceSimulation()
       .force(
@@ -66,18 +66,18 @@
       .force("center", d3.forceCenter(width / 2, height / 2))
       .on("tick", ticked)
       .nodes(d3.values(nodes));
-  
+
     ////////////////////////////////////////////////////////////
     //// Render Chart //////////////////////////////////////////
     ////////////////////////////////////////////////////////////
-  
+
     const chartContainer = d3.select(".chart-container");
-  
+
     const svg = chartContainer
       .append("svg")
       .attr("width", width)
       .attr("height", height);
-  
+
     // Per-type markers, as they don't inherit styles.
     svg
       .append("defs")
@@ -94,7 +94,7 @@
       .attr("markerUnits", "userSpaceOnUse")
       .append("path")
       .attr("d", "M0,0 L0,8 L8,4 z");
-  
+
     const linkPath = svg
       .append("g")
       .selectAll("path")
@@ -104,7 +104,7 @@
       .attr("id", (d, i) => `link-${i}`)
       .attr("class", d => `link ${d.type}`)
       .attr("marker-end", d => `url(#${d.type})`);
-  
+
     const linkLabel = svg
       .append("g")
       .selectAll("text")
@@ -119,7 +119,7 @@
       .attr("href", (d, i) => `#link-${i}`)
       .attr("startOffset", "50%")
       .text(d => d.type);
-  
+
     const nodeCircle = svg
       .append("g")
       .selectAll("circle")
@@ -134,7 +134,7 @@
           .on("drag", dragged)
           .on("end", dragended)
       );
-  
+
     const nodeLabel = svg
       .append("g")
       .selectAll("text")
