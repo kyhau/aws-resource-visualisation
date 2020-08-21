@@ -19,7 +19,7 @@ Resources:
       AccessControl: BucketOwnerFullControl
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
-        BlockPublicPolicy: true
+        BlockPublicPolicy: trues
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
     DeletionPolicy: Retain
@@ -38,7 +38,7 @@ Resources:
       PolicyDocument:
         Statement:
           -
-            Sid: "AllowCloudFrontAccessIdentity"
+            Sid: AllowCloudFrontAccessIdentity
             Effect: "Allow"
             Action:
               - s3:GetObject
@@ -55,6 +55,82 @@ Resources:
             Id: !Sub "${S3Bucket}S3OriginId"
             S3OriginConfig:
               OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOAI}"
+        CacheBehaviors:
+          - AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+            DefaultTTL: 900
+            ForwardedValues:
+              QueryString: false
+              Cookies:
+                Forward: none
+            MaxTTL: 900
+            MinTTL: 0
+            PathPattern: "collapsibletree*"
+            TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+            ViewerProtocolPolicy: redirect-to-https
+
+          - AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+            DefaultTTL: 900
+            ForwardedValues:
+              QueryString: false
+              Cookies:
+                Forward: none
+            MaxTTL: 900
+            MinTTL: 0
+            PathPattern: "network/directedgraph*"
+            TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+            ViewerProtocolPolicy: redirect-to-https
+
+          - AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+            DefaultTTL: 900
+            ForwardedValues:
+              QueryString: false
+              Cookies:
+                Forward: none
+            MaxTTL: 900
+            MinTTL: 0
+            PathPattern: "network/tangledtree*"
+            TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+            ViewerProtocolPolicy: redirect-to-https
+
+          - AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+            DefaultTTL: 900
+            ForwardedValues:
+              QueryString: false
+              Cookies:
+                Forward: none
+            MaxTTL: 900
+            MinTTL: 0
+            PathPattern: "workspaces/iciclechart*"
+            TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+            ViewerProtocolPolicy: redirect-to-https
+
+          - AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+            DefaultTTL: 900
+            ForwardedValues:
+              QueryString: false
+              Cookies:
+                Forward: none
+            MaxTTL: 900
+            MinTTL: 0
+            PathPattern: "workspaces/indentedtree*"
+            TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+            ViewerProtocolPolicy: redirect-to-https
+
         Comment: !Sub "CloudFront origin for ${AppBucketName}"
         CustomErrorResponses:
           - ErrorCode: 403
@@ -68,11 +144,14 @@ Resources:
             - GET
             - HEAD
             - OPTIONS
-          TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+          DefaultTTL: 900
           ForwardedValues:
             QueryString: false
             Cookies:
               Forward: none
+          MaxTTL: 900
+          MinTTL: 0
+          TargetOriginId: !Sub "${S3Bucket}S3OriginId"
           ViewerProtocolPolicy: redirect-to-https
         DefaultRootObject: index.html
         Enabled: true
