@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700");
+
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 14px;
+}
+
+.intro-container {
+  text-align: center;
+}
+
+.chart-container {
+  text-align: center;
+}
+
+text {
+  font-size: 10px;
+  pointer-events: none;
+}
+
+.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+#accepted {
+  fill: #66c2a5;
+}
+
+.link.accepted {
+  stroke: #66c2a5;
+}
+
+#response {
+  fill: #8da0cb;
+}
+
+.link.response {
+  stroke-dasharray: 0, 2 1;
+  stroke: #8da0cb;
+}
+
+.link.rejected {
+  stroke: #fc8d62;
+}
+
+#rejected {
+  fill: #fc8d62;
+}
+
+.link-label {
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}
+
+circle {
+  fill: #ddd;
+  stroke: #666;
+  stroke-width: 1px;
+}

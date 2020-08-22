@@ -1,0 +1,19 @@
+digraph "template" {
+S3Bucket [label="S3Bucket\n<AWS::S3::Bucket>"];
+CloudFrontOAI [label="CloudFrontOAI\n<AWS::CloudFront::CloudFrontOriginAccessIdentity>"];
+S3BucketPolicy [label="S3BucketPolicy\n<AWS::S3::BucketPolicy>"];
+CFDistribution [label="CFDistribution\n<AWS::CloudFront::Distribution>"];
+CloudFrontOAI -> S3Bucket  [key=0, label=Sub];
+S3BucketPolicy -> S3Bucket  [key=0, label=Ref];
+S3BucketPolicy -> S3Bucket  [key=1, label=Sub];
+S3BucketPolicy -> CloudFrontOAI  [key=0, label=Sub];
+CFDistribution -> S3Bucket  [key=0, label=GetAtt];
+CFDistribution -> S3Bucket  [key=1, label=Sub];
+CFDistribution -> S3Bucket  [key=2, label=Sub];
+CFDistribution -> S3Bucket  [key=3, label=Sub];
+CFDistribution -> S3Bucket  [key=4, label=Sub];
+CFDistribution -> S3Bucket  [key=5, label=Sub];
+CFDistribution -> S3Bucket  [key=6, label=Sub];
+CFDistribution -> S3Bucket  [key=7, label=Sub];
+CFDistribution -> CloudFrontOAI  [key=0, label=Sub];
+}

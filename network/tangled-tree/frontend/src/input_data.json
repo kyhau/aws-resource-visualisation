@@ -1,0 +1,144 @@
+[
+    [
+        {
+            "u_id": "1",
+            "id": "A",
+            "name": "A",
+            "type": "Jira",
+            "color": "green",
+            "statusColor": "green",
+            "details": {
+                "Details": "Hello A"
+            }
+        }
+    ],
+    [
+        {
+            "u_id": "2",
+            "id": "B",
+            "name": "B",
+            "type": "Jira",
+            "color": "green",
+            "statusColor": "green",
+            "parents": [
+                "A"
+            ],
+            "details": {
+                "Details": "Hello B"
+            }
+        },
+        {
+            "u_id": "3",
+            "id": "C",
+            "name": "C",
+            "type": "Jira",
+            "color": "green",
+            "statusColor": "green",
+            "parents": [
+                "A"
+            ],
+            "details": {
+                "Details": "Hello C"
+            }
+        },
+        {
+            "u_id": "4",
+            "id": "D",
+            "name": "D",
+            "type": "GitHub",
+            "color": "orange",
+            "statusColor": "red",
+            "parents": [
+                "A"
+            ],
+            "details": {
+                "Details": "Hello D"
+            }
+        },
+        {
+            "u_id": "5",
+            "id": "E",
+            "name": "E",
+            "type": "Jama",
+            "color": "blue",
+            "statusColor": "green",
+            "parents": [
+                "A"
+            ],
+            "details": {
+                "Details": "Hello E"
+            }
+        }
+    ],
+    [
+        {
+            "u_id": "6",
+            "id": "F",
+            "name": "F",
+            "type": "Sysml",
+            "color": "yellow",
+            "parents": [
+                "E"
+            ],
+            "details": {
+                "Details": "Hello F"
+            }
+        },
+        {
+            "u_id": "7",
+            "id": "G",
+            "name": "G",
+            "type": "Jama",
+            "color": "blue",
+            "statusColor": "blue",
+            "parents": [
+                "E"
+            ],
+            "details": {
+                "Details": "Hello G"
+            }
+        },
+        {
+            "u_id": "8",
+            "id": "H",
+            "name": "H",
+            "type": "Jama",
+            "color": "blue",
+            "statusColor": "blue",
+            "parents": [
+                "E"
+            ],
+            "details": {
+                "Details": "Hello H"
+            }
+        },
+        {
+            "u_id": "9",
+            "id": "I",
+            "name": "I",
+            "type": "Jama",
+            "color": "blue",
+            "statusColor": "blue",
+            "parents": [
+                "D"
+            ],
+            "details": {
+                "Details": "Hello I"
+            }
+        },
+        {
+            "u_id": "10",
+            "id": "J",
+            "name": "J",
+            "type": "Jama",
+            "color": "blue",
+            "statusColor": "blue",
+            "parents": [
+                "D"
+            ],
+            "details": {
+                "Details": "Hello J"
+            }
+        }
+    ]
+]
