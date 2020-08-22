@@ -1,8 +1,5 @@
 """
-Require:
-sudo apt install graphviz
-pip install cfn-lint pydot
-pip install click
+A script that builds a DOT graph from a CloudFormation template then exports it as a .png image.
 """
 import sys
 from os import makedirs, rename, system

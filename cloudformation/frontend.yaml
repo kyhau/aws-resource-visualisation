@@ -19,7 +19,7 @@ Resources:
       AccessControl: BucketOwnerFullControl
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
-        BlockPublicPolicy: trues
+        BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
     DeletionPolicy: Retain

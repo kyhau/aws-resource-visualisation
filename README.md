@@ -4,11 +4,11 @@ This repo includes some ideas/demo to create visualisation for AWS resources.
 
 ## Demo
 
-1. [Network Directed Graph](https://kyhau.github.io/resource-visualisation/network-directed-graph/index.html) 
-1. Network Tangled Tree (for showing network)
+1. [Network Directed Graph](https://kyhau.github.io/resource-visualisation/network-directed-graph/index.html)
+1. Network Tangled Tree (TODO deployed to s3 with static hosting)
 1. [Icicle Chart](https://kyhau.github.io/resource-visualisation/workspaces/icicle_chart/index.html)
 1. [Indented Tree](https://kyhau.github.io/resource-visualisation/workspaces/indented_tree/index.html)
-1. Export a DOT graph and image from a CloudFormation template
+1. [CloudFormation "graph"](cloudformation-graph/output/frontend.yaml.png)
 
 ## Run locally
 
