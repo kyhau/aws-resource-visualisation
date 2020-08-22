@@ -1,30 +1,37 @@
-# resource-visualisation
+# aws-resource-visualisation
 
-This repo includes some ideas/demo to create visualisation for AWS resources.
+This repo includes tools/scripts to create simple visualisation for some AWS resources.
 
-## Demo
+## Scripts and Demo Links
 
-1. [Network Directed Graph](https://kyhau.github.io/resource-visualisation/network/directed-graph/index.html)
-1. Network Tangled Tree (TODO deployed to s3 with static hosting)
-1. [Icicle Chart](https://kyhau.github.io/resource-visualisation/workspaces/icicle_chart/index.html)
-1. [Indented Tree](https://kyhau.github.io/resource-visualisation/workspaces/indented_tree/index.html)
-1. [CloudFormation "graph"](cloudformation-graph/output/frontend.yaml.png)
+1. [CloudFormation "graph"](cloudformation-graph/)
+   ([Demo](cloudformation-graph/output/frontend.yaml.png))
+   <br>A script that builds a DOT graph from a CloudFormation template then exports it as a .png image.
+1. [Network Directed Graph](network/directed-graph/)
+   ([Demo](https://kyhau.github.io/aws-resource-visualisation/network/directed-graph/index.html))
+   <br>An example of displaying network data (e.g. VPC Flow Log) in a Disjoint Force-Directed Graph.
+1. [Network Tangled Tree](network/tangled-tree/)
+   (Demo TODO deploy to s3 with static hosting)
+   <br>An example of displaying network data (e.g. DX, VIF, CGW, TGW, VPC) in a Tangled Tree.
+1. [WorkSpaces Icicle Chart](workspaces/icicle_chart/)
+   ([Demo](https://kyhau.github.io/aws-resource-visualisation/workspaces/icicle_chart/index.html))
+   <br>An example of displaying distribution of Amazon WorkSpaces in an Icicle Chart (aka Call Tree).
+1. [WorkSpaces Indented Tree](workspaces/indented_tree/)
+   ([Demo](https://kyhau.github.io/aws-resource-visualisation/workspaces/indented_tree/index.html))
+   <br>An example of displaying distribution of Amazon WorkSpaces in an Indented Tree.
+1. [Collapsible tree](https://github.com/kyhau/d3-collapsible-tree-demo)
+   ([Demo](https://kyhau.github.io/d3-collapsible-tree-demo/collapsible_tree.html))
+   <br>An example of displaying data in a collapsible tree.
 
-## Run locally
 
-```
-cd <folder>
+## Common Infrastructure
 
-# python 3
-python -m http.server 8080
+1. [cloudformation](cloudformation/) - CloudFormation templates for creating a static website backed by an S3 bucket and served via https througg CloudFront with OAI.
+2. [deploy_frontend.sh](deploy_frontend.sh) - Upload content and assets to S3.
 
-# python 2
-python -m SimpleHTTPServer 8080
-```
 
-URL: [localhost:8080/index.html](localhost:8080/index.html)
+## Other Ideas
 
-## Ideas
 - Visualisation
     - https://observablehq.com/@d3/mobile-patent-suits
     - https://github.com/erdogant/d3graph

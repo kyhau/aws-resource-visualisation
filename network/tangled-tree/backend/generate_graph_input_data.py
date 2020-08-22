@@ -1,6 +1,6 @@
 import json
-from arki_common.file_io import get_json_data_from_file
 
+from arki_common.file_io import get_json_data_from_file
 
 levels = []
 
@@ -151,6 +151,6 @@ levels.append(level_2b)
 for d in levels:
     print(d)
 
-filename = "../frontend/src/sample_input.json"
+filename = "../frontend/src/input_data.json"
 with open(filename, "w") as outfile:
         json.dump(levels, outfile, indent=2)

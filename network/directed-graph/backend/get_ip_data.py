@@ -119,7 +119,7 @@ def main():
         and (ip_dict[s]['InterfaceType'] != "transit_gateway" and ip_dict[d]['InterfaceType'] != "transit_gateway" )
     ]
 
-    with open("ip_links.json", "w") as write_file:
+    with open("input_data.json", "w") as write_file:
         json.dump(ip_links, write_file, indent=2)
 
 
