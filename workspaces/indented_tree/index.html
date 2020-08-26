@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-
 .node rect {
   cursor: pointer;
   fill: #fff;
@@ -9,22 +8,25 @@
   stroke: #3182bd;
   stroke-width: 1px;
 }
-
+h1 {
+  font: 1.2em sans-serif;
+}
 .node text {
-  font: 10px sans-serif;
+  font: 11px sans-serif;
   pointer-events: none;
 }
-
 .link {
   fill: none;
   stroke: #9ecae1;
   stroke-width: 0px;
 }
-
 </style>
 <body>
+<h1>WorkSpaces Distribution (last modified on <span id="last-modified"></span>)</h1>
+
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
+document.getElementById("last-modified").innerHTML = document.lastModified;
 
 var margin = {top: 30, right: 20, bottom: 30, left: 20},
     width = 960,
