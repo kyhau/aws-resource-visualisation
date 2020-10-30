@@ -23,19 +23,24 @@ This repo includes tools/scripts to create simple visualisation for some AWS res
    ([Demo](https://kyhau.github.io/d3-collapsible-tree-demo/collapsible_tree.html))
    <br>An example of displaying data in a collapsible tree.
 
-
 ## Common Infrastructure
 
 1. [cloudformation](cloudformation/) - CloudFormation templates for creating a static website backed by an S3 bucket and served via https througg CloudFront with OAI.
 2. [deploy_frontend.sh](deploy_frontend.sh) - Upload content and assets to S3.
 
+## Some Useful Tools for Visualisation
+
+- AWS Perspective [awslabs/aws-perspective](https://github.com/awslabs/aws-perspective)
+- AWS Diagram Maker [awslabs/diagram-maker](https://github.com/awslabs/diagram-maker)
+- [AWS Transit Gateway network manager visualisation](https://aws.amazon.com/transit-gateway/faqs/)
+- [FSecureLABS/awspx](https://github.com/FSecureLABS/awspx)
+- [mhlabs/cfn-diagram](https://github.com/mhlabs/cfn-diagram)
 
 ## Other Ideas
 
-- Visualisation
-    - https://observablehq.com/@d3/mobile-patent-suits
-    - https://github.com/erdogant/d3graph
-    - https://visjs.github.io/vis-network/examples/
-    - https://github.com/aws-samples/amazon-neptune-samples/tree/master/gremlin/visjs-neptune
+- https://observablehq.com/@d3/mobile-patent-suits
+- https://github.com/erdogant/d3graph
+- https://visjs.github.io/vis-network/examples/
+- https://github.com/aws-samples/amazon-neptune-samples/tree/master/gremlin/visjs-neptune
 - https://github.com/aws-samples/amazon-neptune-samples
 - https://github.com/tableau/altimeter
