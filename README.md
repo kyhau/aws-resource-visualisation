@@ -35,6 +35,7 @@ This repo includes tools/scripts to create simple visualisation for some AWS res
 - [AWS Transit Gateway network manager visualisation](https://aws.amazon.com/transit-gateway/faqs/)
 - [FSecureLABS/awspx](https://github.com/FSecureLABS/awspx)
 - [mhlabs/cfn-diagram](https://github.com/mhlabs/cfn-diagram)
+- [mingrammer/diagrams](https://github.com/mingrammer/diagrams)
 
 ## Other Ideas
 
