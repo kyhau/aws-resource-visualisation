@@ -36,7 +36,6 @@ This repo includes tools/scripts to create simple visualisation for some AWS res
 - [FSecureLABS/awspx](https://github.com/FSecureLABS/awspx)
 - [mhlabs/cfn-diagram](https://github.com/mhlabs/cfn-diagram)
 - [mingrammer/diagrams](https://github.com/mingrammer/diagrams)
-- [lifadev/ingraph](https://github.com/lifadev/ingraph)
 
 ## Other Ideas
 
