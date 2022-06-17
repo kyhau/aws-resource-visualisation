@@ -9,3 +9,6 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 3
+    # Always increase the version requirement
+    # to match the new version.
+    versioning-strategy: increase
