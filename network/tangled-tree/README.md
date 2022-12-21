@@ -40,7 +40,7 @@ yarn build
 ```
 
 ## Deploy to S3 with static hosting
-Use [deploy_frontend.sh](../../deploy_frontend.sh) to deploy to S3.
+Use [deploy.sh](../../deploy.sh) to deploy to S3.
 
 ## References
 Frontend React app is a modified version of the following

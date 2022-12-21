@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: >
   Launch a static website backed by an S3 bucket and served via https through
-  CloudFront with OAI.
+  CloudFront with OAC.
 
 Parameters:
   AppBucketName:
@@ -22,14 +22,36 @@ Resources:
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
-    DeletionPolicy: Retain
-    UpdateReplacePolicy: Retain
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
 
-  CloudFrontOAI:
-    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+  LogsBucket:
+    Type: AWS::S3::Bucket
     Properties:
-      CloudFrontOriginAccessIdentityConfig:
-        Comment: !Sub "${S3Bucket}-origin-access-identity"
+      AccessControl: LogDeliveryWrite
+      BucketName: !Ref LogsBucketName
+      LifecycleConfiguration:
+        Rules:
+          - Id: DeleteContentAfter1Day
+            Status: Enabled
+            ExpirationInDays: 1
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+
+  CloudFrontOriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Description: Default Origin Access Control
+        Name: !Ref AWS::StackName
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
 
   S3BucketPolicy:
     Type: AWS::S3::BucketPolicy
@@ -38,13 +60,16 @@ Resources:
       PolicyDocument:
         Statement:
           -
-            Sid: AllowCloudFrontAccessIdentity
-            Effect: "Allow"
+            Sid: AllowCloudFrontServicePrincipal
+            Effect: Allow
             Action:
               - s3:GetObject
-            Resource: !Sub 'arn:aws:s3:::${S3Bucket}/*'
+            Resource: !Sub arn:${AWS::Partition}:s3:::${S3Bucket}/*
             Principal:
-              AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOAI}"
+              Service: cloudfront.amazonaws.com
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${CFDistribution}
 
   CFDistribution:
     Type: AWS::CloudFront::Distribution
@@ -52,14 +77,15 @@ Resources:
       DistributionConfig:
         Origins:
           - DomainName: !GetAtt S3Bucket.DomainName
-            Id: !Sub "${S3Bucket}S3OriginId"
+            Id: !Sub ${S3Bucket}S3OriginId
             S3OriginConfig:
-              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOAI}"
+              OriginAccessIdentity: ""
+            OriginAccessControlId: !GetAtt CloudFrontOriginAccessControl.Id
         CacheBehaviors:
           - AllowedMethods:
-            - GET
-            - HEAD
-            - OPTIONS
+              - GET
+              - HEAD
+              - OPTIONS
             DefaultTTL: 900
             ForwardedValues:
               QueryString: false
@@ -68,13 +94,13 @@ Resources:
             MaxTTL: 900
             MinTTL: 0
             PathPattern: "collapsibletree*"
-            TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+            TargetOriginId: !Sub ${S3Bucket}S3OriginId
             ViewerProtocolPolicy: redirect-to-https
 
           - AllowedMethods:
-            - GET
-            - HEAD
-            - OPTIONS
+              - GET
+              - HEAD
+              - OPTIONS
             DefaultTTL: 900
             ForwardedValues:
               QueryString: false
@@ -83,13 +109,13 @@ Resources:
             MaxTTL: 900
             MinTTL: 0
             PathPattern: "network/directedgraph*"
-            TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+            TargetOriginId: !Sub ${S3Bucket}S3OriginId
             ViewerProtocolPolicy: redirect-to-https
 
           - AllowedMethods:
-            - GET
-            - HEAD
-            - OPTIONS
+              - GET
+              - HEAD
+              - OPTIONS
             DefaultTTL: 900
             ForwardedValues:
               QueryString: false
@@ -98,13 +124,13 @@ Resources:
             MaxTTL: 900
             MinTTL: 0
             PathPattern: "network/tangledtree*"
-            TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+            TargetOriginId: !Sub ${S3Bucket}S3OriginId
             ViewerProtocolPolicy: redirect-to-https
 
           - AllowedMethods:
-            - GET
-            - HEAD
-            - OPTIONS
+              - GET
+              - HEAD
+              - OPTIONS
             DefaultTTL: 900
             ForwardedValues:
               QueryString: false
@@ -113,13 +139,13 @@ Resources:
             MaxTTL: 900
             MinTTL: 0
             PathPattern: "workspaces/iciclechart*"
-            TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+            TargetOriginId: !Sub ${S3Bucket}S3OriginId
             ViewerProtocolPolicy: redirect-to-https
 
           - AllowedMethods:
-            - GET
-            - HEAD
-            - OPTIONS
+              - GET
+              - HEAD
+              - OPTIONS
             DefaultTTL: 900
             ForwardedValues:
               QueryString: false
@@ -128,10 +154,10 @@ Resources:
             MaxTTL: 900
             MinTTL: 0
             PathPattern: "workspaces/indentedtree*"
-            TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+            TargetOriginId: !Sub ${S3Bucket}S3OriginId
             ViewerProtocolPolicy: redirect-to-https
 
-        Comment: !Sub "CloudFront origin for ${AppBucketName}"
+        Comment: !Sub CloudFront origin for ${AppBucketName}
         CustomErrorResponses:
           - ErrorCode: 403
             ResponseCode: 200
@@ -151,13 +177,13 @@ Resources:
               Forward: none
           MaxTTL: 900
           MinTTL: 0
-          TargetOriginId: !Sub "${S3Bucket}S3OriginId"
+          TargetOriginId: !Sub ${S3Bucket}S3OriginId
           ViewerProtocolPolicy: redirect-to-https
         DefaultRootObject: index.html
         Enabled: true
         HttpVersion: http2
         Logging:
-          Bucket: !Sub "${LogsBucketName}.s3.amazonaws.com"
+          Bucket: !Sub ${LogsBucket}.s3.amazonaws.com
           IncludeCookies: false
           Prefix: cloudfront
         PriceClass: PriceClass_100

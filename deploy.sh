@@ -1,4 +1,17 @@
-BUCKET_NAME="TOO-bucket-name"
+BUCKET_APP="TODO-app-bucket-name"
+BUCKET_LOG="TODO-log-bucket-name"
+
+
+echo "Deploying CloudFront"
+
+aws cloudformation deploy --template-file cfn/frontend.yaml \
+  --stack-name my-new-stack \
+  --parameter-overrides \
+    AppBucketName=${BUCKET_APP} \
+    KLogsBucketName=${BUCKET_LOG}
+
+
+echo "Uploading content to S3"
 
 pushd network/tangled-tree/frontend
 yarn build

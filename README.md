@@ -25,8 +25,8 @@ This repo includes tools/scripts to create simple visualisation for some AWS res
 
 ## Common Infrastructure
 
-1. [cloudformation](cloudformation/) - CloudFormation templates for creating a static website backed by an S3 bucket and served via https througg CloudFront with OAI.
-2. [deploy_frontend.sh](deploy_frontend.sh) - Upload content and assets to S3.
+1. [cfn](cfn/) - CloudFormation templates for creating a static website backed by an S3 bucket and served via https througg CloudFront with OAC.
+2. [deploy.sh](deploy.sh) - Upload content and assets to S3.
 
 ## Some Useful Tools for Visualisation
 
