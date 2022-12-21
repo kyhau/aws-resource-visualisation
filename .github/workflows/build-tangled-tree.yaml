@@ -1,0 +1,21 @@
+name: build-tangled-tree
+
+on:
+  push:
+    # branches: [main]
+    paths:
+      - .github/workflows/build-tangled-tree.yaml
+      - network/tangled-tree/frontend/**
+  workflow_dispatch:
+
+jobs:
+  build-tangled-tree:
+    name: build-tangled-tree
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - run: |
+          cd network/tangled-tree/frontend
+          yarn build

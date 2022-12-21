@@ -1,5 +1,7 @@
 # Network Tangled Tree
 
+- [![build-tangled-tree](https://github.com/kyhau/aws-resource-visualisation/actions/workflows/build-tangled-tree.yaml/badge.svg)](https://github.com/kyhau/aws-resource-visualisation/actions/workflows/build-tangled-tree.yaml)
+
 Example of displaying network data in a Tangled Tree using [D3.js](https://d3js.org/)
 
 The backend code currently supported:
